@@ -38,5 +38,6 @@ Search.getInitialProps = async (ctx: any): Promise<any> => {
   });
 
   console.log(getPlayerInfo.data);
+  console.log(ctx.store);
 };
 export default Search;

@@ -1,5 +1,25 @@
 import { Reducer } from 'redux';
 
+enum ActionType {
+  SET_BASIC_INFO = 'playerInfo/SET_BASIC_INFO'
+}
+
+interface SetBasicInfoAction {
+  type: ActionType.SET_BASIC_INFO,
+  playerId: string;
+  nickname: string;
+  grade: number;
+}
+
+export const setBasicInfo = (
+  playerId: string, nickname: string, grade: number,
+): SetBasicInfoAction => ({
+  type: ActionType.SET_BASIC_INFO,
+  playerId,
+  nickname,
+  grade,
+});
+
 export interface GameRecordType {
   gameTypeId: string;
   winCount: number;
@@ -39,6 +59,9 @@ export const playerInfoState: PlayerInfoStateType = {
 
 const playerInfoReducer: Reducer = (state = playerInfoState, action) => {
   switch (action.type) {
+    case ActionType.SET_BASIC_INFO: {
+      return state;
+    }
     default: {
       return state;
     }
