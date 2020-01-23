@@ -1,4 +1,4 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -25,14 +25,15 @@ class MyApp extends App<AppProps> {
     const { Component, pageProps, store } = this.props;
 
     return (
-      <Container>
+      <>
         <Head>
           <title>Cyphers - Full Search</title>
         </Head>
         <Provider store={store}>
+          {/* eslint-disable-next-line */}
           <Component {...pageProps} />
         </Provider>
-      </Container>
+      </>
     );
   }
 }

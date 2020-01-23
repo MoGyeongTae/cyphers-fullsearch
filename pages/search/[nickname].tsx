@@ -1,7 +1,12 @@
 import React from 'react';
-import { NextPage } from 'next';
+import { NextPage, NextPageContext } from 'next';
 // import styled from 'styled-components';
 import axios, { AxiosInstance } from 'axios';
+import { useSelector } from 'react-redux';
+import { Store } from 'redux';
+import { StoreState } from '../../store/reducer';
+import { playerInfoActions } from '../../store/reducer/playerInfo';
+import { PlayerInfoActionParams } from '../../store/reducer/playerInfo/types';
 
 const NEOPLE_API_URL = 'https://api.neople.co.kr/cy';
 const NEOPLE_API_KEY = '9geTlpzorlbJs7uDIvZiw1d1jyORlx7x';
@@ -12,32 +17,66 @@ interface PlayerBasicInfo {
   grade: number;
 }
 
-const Search: NextPage = () => (
-  <div />
-);
+interface Context extends NextPageContext {
+  store : Store
+}
 
-Search.getInitialProps = async (ctx: any): Promise<any> => {
+const Search: NextPage = () => {
+  const basicInfo = useSelector((state: StoreState) => state.playerInfo.basicInfo);
+  const playerInfo = useSelector((state : StoreState) => state.playerInfo.playerInfo);
+  console.log(basicInfo);
+  console.log(playerInfo);
+  return (
+    <div />
+  );
+};
+
+Search.getInitialProps = async (ctx: Context): Promise<any> => {
   const cyphersApi = (): AxiosInstance => axios.create({
     baseURL: `${NEOPLE_API_URL}/players`,
     timeout: 30000,
   });
 
+  // Player Default Info
   const getPlayerRes = await cyphersApi().get('', {
     params: {
       nickname: ctx.query.nickname,
       apikey:   NEOPLE_API_KEY,
     },
   });
-
   const playerBasicInfo: PlayerBasicInfo = getPlayerRes.data.rows[0];
 
-  const getPlayerInfo = await cyphersApi().get(`/${playerBasicInfo.playerId}`, {
+  if (!playerBasicInfo) {
+    if (ctx.res) {
+      ctx.res.writeHead(301, {
+        Location: '/',
+      });
+      ctx.res.end();
+    }
+  }
+
+  const { playerId, nickname, grade } = playerBasicInfo;
+  ctx.store!.dispatch(playerInfoActions.setBasicInfo(playerId, nickname, grade));
+
+  // More Info
+  const getPlayerInfo = await cyphersApi().get(`/${playerId}`, {
     params: {
       apikey: NEOPLE_API_KEY,
     },
   });
 
   console.log(getPlayerInfo.data);
-  console.log(ctx.store);
+  const {
+    clanName, ratingPoint, maxRatingPoint, tierName, records,
+  } = getPlayerInfo.data;
+  const playerInfo : PlayerInfoActionParams = {
+    clanName,
+    ratingPoint,
+    maxRatingPoint,
+    tierName,
+    records,
+  };
+  ctx.store!.dispatch(playerInfoActions.setPlayerInfo(playerInfo));
+  return null;
 };
 export default Search;

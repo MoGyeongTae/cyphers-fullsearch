@@ -1,4 +1,4 @@
-import { PlayerInfoStateType } from './playerInfo/index';
+import { PlayerInfoStateType } from './playerInfo/types';
 
 export interface StoreState {
   playerInfo: PlayerInfoStateType

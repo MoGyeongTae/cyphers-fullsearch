@@ -38,6 +38,6 @@ module.exports = {
     'key-spacing': ['error', { 'align': 'value' }],
     'react/prop-types': ['off'],
     "@typescript-eslint/indent": ["error", 2],
-    "max-classes-per-file":['off']
+    "max-classes-per-file":['off'],
   },
 };

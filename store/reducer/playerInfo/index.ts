@@ -1,46 +1,5 @@
-import { Reducer } from 'redux';
-
-enum ActionType {
-  SET_BASIC_INFO = 'playerInfo/SET_BASIC_INFO'
-}
-
-interface SetBasicInfoAction {
-  type: ActionType.SET_BASIC_INFO,
-  playerId: string;
-  nickname: string;
-  grade: number;
-}
-
-export const setBasicInfo = (
-  playerId: string, nickname: string, grade: number,
-): SetBasicInfoAction => ({
-  type: ActionType.SET_BASIC_INFO,
-  playerId,
-  nickname,
-  grade,
-});
-
-export interface GameRecordType {
-  gameTypeId: string;
-  winCount: number;
-  loseCount: number;
-  stopCount: number;
-}
-
-export interface PlayerInfoStateType {
-  basicInfo: {
-    playerId: string;
-    nickname: string;
-    grade: number;
-  },
-  playerInfo: {
-    clanName: string;
-    ratingPoint: number;
-    maxRatingPoint: number;
-    tierName: string;
-    records: GameRecordType[];
-  }
-}
+import { ImmerReducer, createReducerFunction, createActionCreators } from 'immer-reducer';
+import { PlayerInfoStateType, PlayerInfoActionParams } from './types';
 
 export const playerInfoState: PlayerInfoStateType = {
   basicInfo: {
@@ -57,15 +16,26 @@ export const playerInfoState: PlayerInfoStateType = {
   },
 };
 
-const playerInfoReducer: Reducer = (state = playerInfoState, action) => {
-  switch (action.type) {
-    case ActionType.SET_BASIC_INFO: {
-      return state;
-    }
-    default: {
-      return state;
-    }
+class playerInfoReducer extends ImmerReducer<PlayerInfoStateType> {
+  setBasicInfo(playerId : string, nickname : string, grade : number) {
+    this.draftState.basicInfo.playerId = playerId;
+    this.draftState.basicInfo.nickname = nickname;
+    this.draftState.basicInfo.grade = grade;
   }
-};
 
-export default playerInfoReducer;
+  setPlayerInfo(info : PlayerInfoActionParams) {
+    const {
+      clanName, ratingPoint, maxRatingPoint, tierName, records,
+    } = info;
+    this.draftState.playerInfo.clanName = clanName;
+    this.draftState.playerInfo.ratingPoint = ratingPoint;
+    this.draftState.playerInfo.maxRatingPoint = maxRatingPoint;
+    this.draftState.playerInfo.tierName = tierName;
+    this.draftState.playerInfo.records = records;
+  }
+}
+
+export const playerInfoActions = createActionCreators(playerInfoReducer);
+const reducer = createReducerFunction(playerInfoReducer, playerInfoState);
+
+export default reducer;

@@ -2607,6 +2607,11 @@ eslint-plugin-flowtype@^4.5.2:
   dependencies:
     lodash "^4.17.15"
 
+eslint-plugin-immer-reducer@^0.1.1:
+  version "0.1.1"
+  resolved "https://npm.mathfreeon.com/eslint-plugin-immer-reducer/-/eslint-plugin-immer-reducer-0.1.1.tgz#b761807fd7f106c2b36e5f5987b06eeab3e954b4"
+  integrity sha512-q/xyxnAIiVpA9xC+00QMNTt/uIkF96xjfmjo6htGuJBZcK/t031v9NkcsGzU+we89U0jzs6ZceSTwFUqxdqeQg==
+
 eslint-plugin-import@^2.18.2:
   version "2.18.2"
   resolved "https://npm.mathfreeon.com/eslint-plugin-import/-/eslint-plugin-import-2.18.2.tgz#02f1180b90b077b33d447a17a2326ceb400aceb6"
@@ -3316,10 +3321,17 @@ ignore@^4.0.6:
   resolved "https://npm.mathfreeon.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
-immer@^5.0.0:
-  version "5.0.0"
-  resolved "https://npm.mathfreeon.com/immer/-/immer-5.0.0.tgz#07f462b7d95f7e86c214a861ecacd766d42b8c0a"
-  integrity sha512-G7gRqKbi9NE025XVyqyTV98dxUOtdKvu/P1QRaVZfA55aEcXgjbxPdm+TlWdcSMNPKijlaHNz61DGPyelouRlA==
+immer-reducer@^0.7.10:
+  version "0.7.10"
+  resolved "https://npm.mathfreeon.com/immer-reducer/-/immer-reducer-0.7.10.tgz#54d620ab6f9bc5bf0c9c0a985e063cda4c6aa7fa"
+  integrity sha512-X1TgUJbgywhArPBoG+IO+6n703+MD+oC+FYSSlkFaqCPrIXQyJUFjQd1hzysWXPJ5/LdAT4UyaYAetLpmqMVyQ==
+  dependencies:
+    immer "^1.4.0 || ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0"
+
+"immer@^1.4.0 || ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0", immer@^5.3.2:
+  version "5.3.2"
+  resolved "https://npm.mathfreeon.com/immer/-/immer-5.3.2.tgz#e3a1c9f3550f925278fd86b8d2d644f7d5e9561b"
+  integrity sha512-wPWsSV0fv8iT7QQVs3rxBDWTbi5pHrVgnQv/McMfaRGJTLfQ3jFMEr08UibqS8hM17KCQXcjjYYzQzYe5e7BIA==
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -5454,6 +5466,11 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+redux-devtools-extension@^2.13.8:
+  version "2.13.8"
+  resolved "https://npm.mathfreeon.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+  integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
 
 redux-thunk@^2.3.0:
   version "2.3.0"
