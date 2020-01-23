@@ -1,5 +1,5 @@
 import { ImmerReducer, createReducerFunction, createActionCreators } from 'immer-reducer';
-import { PlayerInfoStateType, PlayerInfoActionParams } from './types';
+import { PlayerInfoStateType, PlayerInfoActionParams, GameRecordType } from './types';
 
 export const playerInfoState: PlayerInfoStateType = {
   basicInfo: {
@@ -8,11 +8,12 @@ export const playerInfoState: PlayerInfoStateType = {
     grade:    0,
   },
   playerInfo: {
-    clanName:       '',
-    ratingPoint:    0,
-    maxRatingPoint: 0,
-    tierName:       '',
-    records:        [],
+    clanName:       null,
+    ratingPoint:    null,
+    maxRatingPoint: null,
+    tierName:       null,
+    normalRecord:   null,
+    rankRecord:     null,
   },
 };
 
@@ -31,7 +32,15 @@ class playerInfoReducer extends ImmerReducer<PlayerInfoStateType> {
     this.draftState.playerInfo.ratingPoint = ratingPoint;
     this.draftState.playerInfo.maxRatingPoint = maxRatingPoint;
     this.draftState.playerInfo.tierName = tierName;
-    this.draftState.playerInfo.records = records;
+    if (records && records[0]) {
+      records.forEach((record : GameRecordType) => {
+        if (record.gameTypeId === 'normal') {
+          this.draftState.playerInfo.normalRecord = record;
+        } else if (record.gameTypeId === 'rating') {
+          this.draftState.playerInfo.rankRecord = record;
+        }
+      });
+    }
   }
 }
 

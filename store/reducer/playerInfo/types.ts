@@ -28,7 +28,7 @@ export interface PlayerInfoActionParams {
   ratingPoint: number | null;
   maxRatingPoint: number | null;
   tierName: string | null;
-  records: GameRecordType[] | null
+  records : GameRecordType[] | null;
 }
 
 export interface SetPlayerInfoAction {
@@ -51,7 +51,8 @@ export interface PlayerInfoStateType {
     ratingPoint: number | null;
     maxRatingPoint: number | null;
     tierName: string | null;
-    records: GameRecordType[] | null;
+    normalRecord : GameRecordType | null,
+    rankRecord : GameRecordType | null
   }
 }
 

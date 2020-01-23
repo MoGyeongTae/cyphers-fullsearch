@@ -7,6 +7,7 @@ import { Store } from 'redux';
 import { StoreState } from '../../store/reducer';
 import { playerInfoActions } from '../../store/reducer/playerInfo';
 import { PlayerInfoActionParams } from '../../store/reducer/playerInfo/types';
+import SearchPage from '../../components/SearchPage';
 
 const NEOPLE_API_URL = 'https://api.neople.co.kr/cy';
 const NEOPLE_API_KEY = '9geTlpzorlbJs7uDIvZiw1d1jyORlx7x';
@@ -27,7 +28,7 @@ const Search: NextPage = () => {
   console.log(basicInfo);
   console.log(playerInfo);
   return (
-    <div />
+    <SearchPage />
   );
 };
 
