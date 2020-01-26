@@ -147,7 +147,7 @@ const SearchPage : React.FC = () => {
       <div className="menu-wrapper">
         <ProfileWrap>
           <div className="profile-image">
-            <img src="/static/profile.png" />
+            <img src="/img/default_profile.png" alt="profile" />
           </div>
           <div className="profile-info">
             <span className="grade">
@@ -157,6 +157,7 @@ const SearchPage : React.FC = () => {
             <span className="nickname">{basicInfo.nickname}</span>
             <span className="clan">
 [
+              {' '}
               {playerInfo.clanName}
               {' '}
 ]

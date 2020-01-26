@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/dist/client/router';
 
 const Container = styled.div`
   display: flex;
@@ -68,16 +69,30 @@ const SearchInput = styled.input`
 
 const MainPage: React.FC = () => {
   const [nickname, setNickname] = useState('');
+  const router = useRouter();
   const onChangeSearch = useCallback((e) => {
-    setNickname(e.target.value);
+    if (e.target.value.length > 9) {
+      e.preventDefault();
+    } else {
+      setNickname(e.target.value);
+    }
   }, []);
+  const searchAction = useCallback(() => {
+    router.push(`/search/${nickname}`);
+  }, [nickname, router]);
+
+  const onKeyPressSearch = useCallback((e) => {
+    if (e.key === 'Enter') {
+      searchAction();
+    }
+  }, [searchAction]);
   return (
     <Container className="container">
       <SearchContainer>
         <h2 className="title">Cyphers Full Search</h2>
         <SearchWrap>
-          <SearchInput onChange={onChangeSearch} value={nickname} />
-          <SearchButton>Search</SearchButton>
+          <SearchInput onChange={onChangeSearch} value={nickname} onKeyPress={onKeyPressSearch} />
+          <SearchButton onClick={searchAction}>Search</SearchButton>
         </SearchWrap>
       </SearchContainer>
     </Container>
