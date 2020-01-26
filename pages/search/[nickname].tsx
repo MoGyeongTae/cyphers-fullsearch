@@ -2,9 +2,7 @@ import React from 'react';
 import { NextPage, NextPageContext } from 'next';
 // import styled from 'styled-components';
 import axios, { AxiosInstance } from 'axios';
-import { useSelector } from 'react-redux';
 import { Store } from 'redux';
-import { StoreState } from '../../store/reducer';
 import { playerInfoActions } from '../../store/reducer/playerInfo';
 import { PlayerInfoActionParams } from '../../store/reducer/playerInfo/types';
 import SearchPage from '../../components/SearchPage';
@@ -22,15 +20,9 @@ interface Context extends NextPageContext {
   store : Store
 }
 
-const Search: NextPage = () => {
-  const basicInfo = useSelector((state: StoreState) => state.playerInfo.basicInfo);
-  const playerInfo = useSelector((state : StoreState) => state.playerInfo.playerInfo);
-  console.log(basicInfo);
-  console.log(playerInfo);
-  return (
-    <SearchPage />
-  );
-};
+const Search: NextPage = () => (
+  <SearchPage />
+);
 
 Search.getInitialProps = async (ctx: Context): Promise<any> => {
   const cyphersApi = (): AxiosInstance => axios.create({
