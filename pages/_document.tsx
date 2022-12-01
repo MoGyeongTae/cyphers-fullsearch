@@ -1,5 +1,5 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 interface Props {
@@ -16,7 +16,7 @@ export default class MyCustomDocument extends Document<Props> {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           {this.props.styleTags}
           <style>
@@ -47,7 +47,7 @@ export default class MyCustomDocument extends Document<Props> {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
