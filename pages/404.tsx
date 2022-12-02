@@ -24,7 +24,9 @@ const ErrorPageContainer = styled.div`
 
 const Error: NextPage = () => (
   <ErrorPageContainer>
-    알 수 없는 오류가 발생하였습니다.
+    404
+    <span className="separator">|</span>
+    Page Not Found!
     <Link href="/">메인으로</Link>
   </ErrorPageContainer>
 );
