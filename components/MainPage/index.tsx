@@ -81,17 +81,24 @@ const MainPage: React.FC = () => {
     router.push(`/search/${nickname}`);
   }, [nickname, router]);
 
-  const onKeyPressSearch = useCallback((e) => {
-    if (e.key === 'Enter') {
-      searchAction();
-    }
-  }, [searchAction]);
+  const onKeyPressSearch = useCallback(
+    (e) => {
+      if (e.key === 'Enter') {
+        searchAction();
+      }
+    },
+    [searchAction],
+  );
   return (
     <Container className="container">
       <SearchContainer>
-        <h2 className="title">Cyphers Full Search</h2>
+        <h2 className="title">사이퍼즈 전적검색</h2>
         <SearchWrap>
-          <SearchInput onChange={onChangeSearch} value={nickname} onKeyPress={onKeyPressSearch} />
+          <SearchInput
+            onChange={onChangeSearch}
+            value={nickname}
+            onKeyPress={onKeyPressSearch}
+          />
           <SearchButton onClick={searchAction}>Search</SearchButton>
         </SearchWrap>
       </SearchContainer>

@@ -138,9 +138,13 @@ const ProfileWrap = styled.div`
   }
 `;
 
-const SearchPage : React.FC = () => {
-  const basicInfo = useSelector((state : StoreState) => state.playerInfo.basicInfo);
-  const playerInfo = useSelector((state : StoreState) => state.playerInfo.playerInfo);
+const SearchPage: React.FC = () => {
+  const basicInfo = useSelector(
+    (state: StoreState) => state.playerInfo.basicInfo,
+  );
+  const playerInfo = useSelector(
+    (state: StoreState) => state.playerInfo.playerInfo,
+  );
 
   return (
     <SearchContainer>
@@ -150,18 +154,9 @@ const SearchPage : React.FC = () => {
             <img src="/img/default_profile.png" alt="profile" />
           </div>
           <div className="profile-info">
-            <span className="grade">
-              {basicInfo.grade}
-급
-            </span>
+            <span className="grade">{basicInfo.grade}급</span>
             <span className="nickname">{basicInfo.nickname}</span>
-            <span className="clan">
-[
-              {' '}
-              {playerInfo.clanName}
-              {' '}
-]
-            </span>
+            <span className="clan">[ {playerInfo.clanName} ]</span>
           </div>
         </ProfileWrap>
       </div>
@@ -174,7 +169,9 @@ const SearchPage : React.FC = () => {
             <div className="rating-tier rating-box">
               <h3 className="title">랭크</h3>
               <span className="point">
-                {playerInfo.tierName ? playerInfo.tierName.split(' ')[0] : '배치 중'}
+                {playerInfo.tierName
+                  ? playerInfo.tierName.split(' ')[0]
+                  : '배치 중'}
               </span>
               <span className="unit">
                 {playerInfo.tierName ? playerInfo.tierName.split(' ')[1] : ''}
@@ -190,11 +187,12 @@ const SearchPage : React.FC = () => {
             <div className="max-rating-point rating-box">
               <h3 className="title">최고 랭크 포인트</h3>
               <span className="point">
-                {playerInfo.maxRatingPoint ? playerInfo.maxRatingPoint : '배치 중'}
+                {playerInfo.maxRatingPoint
+                  ? playerInfo.maxRatingPoint
+                  : '배치 중'}
               </span>
               <span className="unit">
-                {playerInfo.maxRatingPoint ? 'RP' : ''}
-                {' '}
+                {playerInfo.maxRatingPoint ? 'RP' : ''}{' '}
               </span>
             </div>
           </div>

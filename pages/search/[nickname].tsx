@@ -17,24 +17,23 @@ interface PlayerBasicInfo {
 }
 
 interface Context extends NextPageContext {
-  store : Store
+  store: Store;
 }
 
-const Search: NextPage = () => (
-  <SearchPage />
-);
+const Search: NextPage = () => <SearchPage />;
 
 Search.getInitialProps = async (ctx: Context): Promise<any> => {
-  const cyphersApi = (): AxiosInstance => axios.create({
-    baseURL: `${NEOPLE_API_URL}/players`,
-    timeout: 30000,
-  });
+  const cyphersApi = (): AxiosInstance =>
+    axios.create({
+      baseURL: `${NEOPLE_API_URL}/players`,
+      timeout: 30000,
+    });
 
   // Player Default Info
   const getPlayerRes = await cyphersApi().get('', {
     params: {
       nickname: ctx.query.nickname,
-      apikey:   NEOPLE_API_KEY,
+      apikey: NEOPLE_API_KEY,
     },
   });
   const playerBasicInfo: PlayerBasicInfo = getPlayerRes.data.rows[0];
@@ -49,7 +48,9 @@ Search.getInitialProps = async (ctx: Context): Promise<any> => {
   }
 
   const { playerId, nickname, grade } = playerBasicInfo;
-  ctx.store!.dispatch(playerInfoActions.setBasicInfo(playerId, nickname, grade));
+  ctx.store!.dispatch(
+    playerInfoActions.setBasicInfo(playerId, nickname, grade),
+  );
 
   // More Info
   const getPlayerInfo = await cyphersApi().get(`/${playerId}`, {
@@ -59,10 +60,9 @@ Search.getInitialProps = async (ctx: Context): Promise<any> => {
   });
 
   console.log(getPlayerInfo.data);
-  const {
-    clanName, ratingPoint, maxRatingPoint, tierName, records,
-  } = getPlayerInfo.data;
-  const playerInfo : PlayerInfoActionParams = {
+  const { clanName, ratingPoint, maxRatingPoint, tierName, records } =
+    getPlayerInfo.data;
+  const playerInfo: PlayerInfoActionParams = {
     clanName,
     ratingPoint,
     maxRatingPoint,
