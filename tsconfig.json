@@ -28,7 +28,8 @@
       "@types/react-dom",
       "@types/react-redux",
       "@types/styled-components"
-    ]
+    ],
+    "incremental": true
   },
   "exclude": [
     "node_modules"
