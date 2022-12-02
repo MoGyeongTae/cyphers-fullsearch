@@ -138,7 +138,7 @@ const ProfileWrap = styled.div`
   }
 `;
 
-const SearchPage: React.FC = () => {
+const SearchPage = () => {
   const basicInfo = useSelector(
     (state: StoreState) => state.playerInfo.basicInfo,
   );

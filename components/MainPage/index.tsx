@@ -67,7 +67,7 @@ const SearchInput = styled.input`
   padding-right: 15px;
 `;
 
-const MainPage: React.FC = () => {
+const MainPage = () => {
   const [nickname, setNickname] = useState('');
   const router = useRouter();
   const onChangeSearch = useCallback((e) => {
@@ -99,7 +99,7 @@ const MainPage: React.FC = () => {
             value={nickname}
             onKeyPress={onKeyPressSearch}
           />
-          <SearchButton onClick={searchAction}>Search</SearchButton>
+          <SearchButton onClick={searchAction}>검색</SearchButton>
         </SearchWrap>
       </SearchContainer>
     </Container>
